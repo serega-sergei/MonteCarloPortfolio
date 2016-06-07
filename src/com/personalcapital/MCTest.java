@@ -2,7 +2,7 @@ package com.personalcapital;
 
 import java.math.BigDecimal;
 
-import com.personalcapital.dao.Portfolio;
+import com.personalcapital.model.Portfolio;
 import com.personalcapital.montecarlo.MonteCarloRunner;
 import com.personalcapital.montecarlo.PortfolioProcessor;
 

@@ -3,7 +3,7 @@ package com.personalcapital.montecarlo;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-import com.personalcapital.dao.Portfolio;
+import com.personalcapital.model.Portfolio;
 import com.personalcapital.utils.RandomGaussian;
 
 public class PortfolioProcessor implements MonteCarlo {
