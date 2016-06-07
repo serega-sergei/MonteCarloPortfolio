@@ -45,6 +45,7 @@ public class MonteCarloRunner {
         df.setMinimumFractionDigits(1);
         df.setGroupingUsed(false);
 
+        out.println(montecarlo);
         out.println("Median: " + df.format(median));
         out.println("90%: " + df.format(best10));
         out.println("10%: " + df.format(worst10));

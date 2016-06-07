@@ -1,0 +1,19 @@
+#Sample result
+
+Aggressive Portfolio: 
+PortfolioProcessor [portfolio=Portfolio [term=20, deposit=100000, mean=0.094324, standardDeviation=0.156750], inflationRate=0.035000]
+Median: 244664.26
+90%: 575650.06
+10%: 105234.53
+
+Conservative Portfolio: 
+PortfolioProcessor [portfolio=Portfolio [term=20, deposit=100000, mean=0.061890, standardDeviation=0.063438], inflationRate=0.035000]
+Median: 161335.66
+90%: 226086.23
+10%: 113933.31
+
+Personal Capital Test Portfolio: 
+PortfolioProcessor [portfolio=Portfolio [term=20, deposit=100000, mean=0.089000, standardDeviation=0.145000], inflationRate=0.039000]
+Median: 215697.65
+90%: 452734.58
+10%: 96765.79

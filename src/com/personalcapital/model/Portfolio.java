@@ -23,7 +23,7 @@ public class Portfolio {
     public void setTerm(int term) {
         if (term <= 0)
             throw new IllegalArgumentException("Term can not be nagative or zero");
-        
+
         this.term = term;
     }
 
@@ -34,11 +34,11 @@ public class Portfolio {
     public void setDeposit(BigDecimal deposit) {
         if (deposit.doubleValue() <= 0)
             throw new IllegalArgumentException("Deposit can not be nagative or zero");
-        
+
         this.deposit = deposit;
     }
 
-    public double getMean() {        
+    public double getMean() {
         return mean;
     }
 
@@ -46,11 +46,17 @@ public class Portfolio {
         this.mean = mean;
     }
 
-    public double getSd() {
+    public double getStandardDeviation() {
         return standardDeviation;
     }
 
-    public void setSd(double sd) {
-        this.standardDeviation = sd;
+    public void setStandardDeviation(double standardDeviation) {
+        this.standardDeviation = standardDeviation;
+    }
+
+    @Override
+    public String toString() {
+        return "Portfolio [term=" + term + ", deposit=" + deposit + ", mean=" + String.format("%.6f", mean)
+                + ", standardDeviation=" + String.format("%.6f", standardDeviation) + "]";
     }
 }

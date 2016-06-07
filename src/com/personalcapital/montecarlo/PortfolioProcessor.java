@@ -8,7 +8,6 @@ import com.personalcapital.utils.RandomGaussian;
 
 public class PortfolioProcessor implements MonteCarlo {
     private Portfolio portfolio;
-    private RandomGaussian gaussian;
     private double inflationRate;
 
     public PortfolioProcessor(Portfolio portfolio, double inflationRate) {
@@ -16,7 +15,6 @@ public class PortfolioProcessor implements MonteCarlo {
 
         setPortfolio(portfolio);
         this.inflationRate = inflationRate / 100;
-        gaussian = new RandomGaussian(portfolio.getMean(), portfolio.getSd());
     }
 
     @Override
@@ -35,7 +33,10 @@ public class PortfolioProcessor implements MonteCarlo {
     }
 
     private BigDecimal generateNextYearValue(BigDecimal deposit) {
-        deposit = deposit.multiply(BigDecimal.valueOf(1 + gaussian.getGaussian()), MathContext.DECIMAL128);
+        deposit = deposit.multiply(
+                BigDecimal
+                        .valueOf(1 + RandomGaussian.getGaussian(portfolio.getMean(), portfolio.getStandardDeviation())),
+                MathContext.DECIMAL128);
 
         return deposit;
     }
@@ -63,5 +64,11 @@ public class PortfolioProcessor implements MonteCarlo {
 
     public void setInflationRate(double inflationRate) {
         this.inflationRate = inflationRate / 100;
+    }
+
+    @Override
+    public String toString() {
+        return "PortfolioProcessor [portfolio=" + portfolio + ", inflationRate=" + String.format("%.6f", inflationRate)
+                + "]";
     }
 }
