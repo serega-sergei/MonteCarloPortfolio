@@ -9,13 +9,13 @@ import com.personalcapital.utils.RandomGaussian;
 public class PortfolioProcessor implements MonteCarlo {
     private Portfolio portfolio;
     private RandomGaussian gaussian;
+    private double inflationRate;
 
-    public PortfolioProcessor(Portfolio portfolio) {
+    public PortfolioProcessor(Portfolio portfolio, double inflationRate) {
         super();
-        if (portfolio == null)
-            throw new NullPointerException();
 
-        this.portfolio = portfolio;
+        setPortfolio(portfolio);
+        this.inflationRate = inflationRate / 100;
         gaussian = new RandomGaussian(portfolio.getMean(), portfolio.getSd());
     }
 
@@ -41,10 +41,27 @@ public class PortfolioProcessor implements MonteCarlo {
     }
 
     private BigDecimal inflationAdj(BigDecimal value) {
-        value = value.divide(BigDecimal.valueOf(Math.pow(1 + portfolio.getInflationRate(), portfolio.getTerm())),
+        value = value.divide(BigDecimal.valueOf(Math.pow(1 + getInflationRate(), portfolio.getTerm())),
                 MathContext.DECIMAL128);
 
         return value;
     }
 
+    public Portfolio getPortfolio() {
+        return portfolio;
+    }
+
+    public void setPortfolio(Portfolio portfolio) {
+        if (portfolio == null)
+            throw new NullPointerException("Portfolio can not be null.");
+        this.portfolio = portfolio;
+    }
+
+    public double getInflationRate() {
+        return inflationRate;
+    }
+
+    public void setInflationRate(double inflationRate) {
+        this.inflationRate = inflationRate / 100;
+    }
 }

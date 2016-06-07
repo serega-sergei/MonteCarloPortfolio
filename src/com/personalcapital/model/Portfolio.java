@@ -6,16 +6,14 @@ public class Portfolio {
     private int term;
     private BigDecimal deposit;
     private double mean;
-    private double sd;
-    private double inflationRate;
+    private double standardDeviation;
 
-    public Portfolio(BigDecimal deposit, int term, double mean, double sd, double inflationRate) {
+    public Portfolio(BigDecimal deposit, int term, double mean, double sd) {
         super();
-        this.deposit = deposit;
-        this.term = term;
+        setDeposit(deposit);
+        setTerm(term);
         this.mean = mean / 100;
-        this.sd = sd / 100;
-        this.inflationRate = inflationRate / 100;
+        this.standardDeviation = sd / 100;
     }
 
     public int getTerm() {
@@ -23,6 +21,9 @@ public class Portfolio {
     }
 
     public void setTerm(int term) {
+        if (term <= 0)
+            throw new IllegalArgumentException("Term can not be nagative or zero");
+        
         this.term = term;
     }
 
@@ -31,10 +32,13 @@ public class Portfolio {
     }
 
     public void setDeposit(BigDecimal deposit) {
+        if (deposit.doubleValue() <= 0)
+            throw new IllegalArgumentException("Deposit can not be nagative or zero");
+        
         this.deposit = deposit;
     }
 
-    public double getMean() {
+    public double getMean() {        
         return mean;
     }
 
@@ -43,18 +47,10 @@ public class Portfolio {
     }
 
     public double getSd() {
-        return sd;
+        return standardDeviation;
     }
 
     public void setSd(double sd) {
-        this.sd = sd;
-    }
-
-    public double getInflationRate() {
-        return inflationRate;
-    }
-
-    public void setInflationRate(double inflationRate) {
-        this.inflationRate = inflationRate;
+        this.standardDeviation = sd;
     }
 }

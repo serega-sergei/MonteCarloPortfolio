@@ -6,21 +6,21 @@ public final class RandomGaussian {
     private Random fRandom = new Random();
 
     private double mean = 0.0f;
-    private double sd = 1.0f;
+    private double standardDeviation = 1.0f;
 
     public RandomGaussian() {
         super();
         mean = 0.0f;
-        sd = 1.0f;
+        standardDeviation = 1.0f;
     }
 
     public RandomGaussian(double mean, double sd) {
         super();
         this.mean = mean;
-        this.sd = sd;
+        this.standardDeviation = sd;
     }
 
     public double getGaussian() {
-        return mean + fRandom.nextGaussian() * sd;
+        return mean + fRandom.nextGaussian() * standardDeviation;
     }
 }
