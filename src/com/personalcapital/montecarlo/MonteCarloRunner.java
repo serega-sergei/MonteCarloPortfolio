@@ -1,10 +1,14 @@
 package com.personalcapital.montecarlo;
 
-import java.io.PrintStream;
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.Arrays;
 
+/**
+ * Class for running Monte Carlo simulations
+ * 
+ * @author Siarhei Siryk
+ *
+ */
 public class MonteCarloRunner {
     private BigDecimal[] values;
     private int iterationsNum;
@@ -12,13 +16,19 @@ public class MonteCarloRunner {
 
     public MonteCarloRunner(int iterationsNum, MonteCarlo montecarlo) {
         super();
+        setIterationsNum(iterationsNum);
         this.values = new BigDecimal[iterationsNum];
-        this.iterationsNum = iterationsNum;
         this.montecarlo = montecarlo;
     }
 
+    /**
+     * Runs Monte Carlo simulation using given number of experiments
+     * "iterationsNum" based on generated values from MonteCarlo implementations
+     * 
+     * @return Monte Carlo simulation results array
+     */
     public BigDecimal[] runSimulation() {
-        values = new BigDecimal[10000];
+        values = new BigDecimal[iterationsNum];
 
         for (int i = 0; i < iterationsNum; i++) {
             values[i] = montecarlo.generateValue();
@@ -29,27 +39,29 @@ public class MonteCarloRunner {
         return values;
     }
 
-    public void printResults(PrintStream out) {
-        BigDecimal median, worst10, best10;
-
-        if (values.length % 2 == 0)
-            median = (values[values.length / 2].add(values[values.length / 2 - 1])).divide(new BigDecimal(2));
-        else
-            median = values[values.length / 2];
-
-        worst10 = values[new Long(Math.round(values.length * 0.1)).intValue()];
-        best10 = values[new Long(Math.round(values.length * 0.9)).intValue()];
-
-        DecimalFormat df = new DecimalFormat();
-        df.setMaximumFractionDigits(2);
-        df.setMinimumFractionDigits(1);
-        df.setGroupingUsed(false);
-
-        out.println(montecarlo);
-        out.println("Median: " + df.format(median));
-        out.println("90%: " + df.format(best10));
-        out.println("10%: " + df.format(worst10));
-
+    public BigDecimal[] getValues() {
+        return values;
     }
 
+    public void setValues(BigDecimal[] values) {
+        this.values = values;
+    }
+
+    public int getIterationsNum() {
+        return iterationsNum;
+    }
+
+    public void setIterationsNum(int iterationsNum) {
+        if (iterationsNum <= 0)
+            throw new IllegalArgumentException("Number of iterations can not be nagative or zero");
+        this.iterationsNum = iterationsNum;
+    }
+
+    public MonteCarlo getMontecarlo() {
+        return montecarlo;
+    }
+
+    public void setMontecarlo(MonteCarlo montecarlo) {
+        this.montecarlo = montecarlo;
+    }
 }

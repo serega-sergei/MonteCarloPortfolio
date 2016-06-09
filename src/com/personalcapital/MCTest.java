@@ -3,6 +3,7 @@ package com.personalcapital;
 import java.math.BigDecimal;
 
 import com.personalcapital.model.Portfolio;
+import com.personalcapital.montecarlo.MonteCarloResultsParser;
 import com.personalcapital.montecarlo.MonteCarloRunner;
 import com.personalcapital.montecarlo.PortfolioProcessor;
 
@@ -20,15 +21,15 @@ public class MCTest {
 
         System.out.println("Aggressive Portfolio: ");
         runnerAgressive.runSimulation();
-        runnerAgressive.printResults(System.out);
+        MonteCarloResultsParser.printResults(System.out, runnerAgressive);
 
         System.out.println("\nConservative Portfolio: ");
         runnerConservative.runSimulation();
-        runnerConservative.printResults(System.out);
+        MonteCarloResultsParser.printResults(System.out, runnerConservative);
 
         System.out.println("\nPersonal Capital Test Portfolio: ");
         runnerPersonalCapitalTest.runSimulation();
-        runnerPersonalCapitalTest.printResults(System.out);
+        MonteCarloResultsParser.printResults(System.out, runnerConservative);
 
     }
 

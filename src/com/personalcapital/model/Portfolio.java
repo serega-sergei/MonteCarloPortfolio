@@ -2,6 +2,12 @@ package com.personalcapital.model;
 
 import java.math.BigDecimal;
 
+/**
+ * Simple model POJO for Portfolio representation
+ * 
+ * @author Siarhei Siryk
+ *
+ */
 public class Portfolio {
     private int term;
     private BigDecimal deposit;
@@ -12,8 +18,8 @@ public class Portfolio {
         super();
         setDeposit(deposit);
         setTerm(term);
-        this.mean = mean / 100;
-        this.standardDeviation = sd / 100;
+        this.mean = mean;
+        this.standardDeviation = sd;
     }
 
     public int getTerm() {
