@@ -31,9 +31,10 @@ public class MonteCarloRunnerTest {
         BigDecimal[] result = runner.runSimulation();
 
         assertEquals(result.length, itersNum);
-        
+
         for (int i = 0; i < result.length; i++) {
-            assert(result[i].doubleValue() > 0);
+            assert (result[i].doubleValue() >= PortfolioProcessorTest.getLowerBound(portfolio, inflationRate)
+                    && result[i].doubleValue() <= PortfolioProcessorTest.getUpperBound(portfolio, inflationRate));
         }
     }
 
