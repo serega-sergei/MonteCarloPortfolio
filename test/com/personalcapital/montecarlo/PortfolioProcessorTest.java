@@ -1,8 +1,5 @@
 package com.personalcapital.montecarlo;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertThat;
-
 import java.math.BigDecimal;
 import java.math.MathContext;
 
@@ -31,12 +28,9 @@ public class PortfolioProcessorTest {
                 && result.doubleValue() >= getLowerBound(processor.getPortfolio(), processor.getInflationRate()));
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void setPortfolioTest() {
-        try {
-            processor.setPortfolio(null);
-        } catch (NullPointerException e) {
-        }
+        processor.setPortfolio(null);
     }
 
     public static double getUpperBound(Portfolio portfolio, double inflationRate) {

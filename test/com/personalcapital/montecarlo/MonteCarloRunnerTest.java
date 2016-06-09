@@ -1,6 +1,5 @@
 package com.personalcapital.montecarlo;
 
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
@@ -38,10 +37,8 @@ public class MonteCarloRunnerTest {
         }
     }
 
+    @Test(expected = IllegalArgumentException.class)
     public void setIterationsNumTest() {
-        try {
-            runner.setIterationsNum(0);
-        } catch (IllegalArgumentException e) {
-        }
+        runner.setIterationsNum(0);
     }
 }

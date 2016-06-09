@@ -13,30 +13,14 @@ public class PortfolioTest {
         portfolio = new Portfolio(new BigDecimal(100), 10, 10, 15);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void setDepositTest() {
-        try {
-            portfolio.setDeposit(new BigDecimal(-100));
-        } catch (IllegalArgumentException e) {
-        }
-
-        try {
-            portfolio.setDeposit(new BigDecimal(0));
-        } catch (IllegalArgumentException e) {
-        }
+        portfolio.setDeposit(new BigDecimal(-100));
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void setTerm() {
-        try {
-            portfolio.setTerm(-10);
-        } catch (IllegalArgumentException e) {
-        }
-
-        try {
-            portfolio.setTerm(0);
-        } catch (IllegalArgumentException e) {
-        }
+        portfolio.setTerm(-10);
     }
 
 }
