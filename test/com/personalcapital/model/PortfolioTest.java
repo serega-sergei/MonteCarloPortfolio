@@ -1,8 +1,5 @@
 package com.personalcapital.model;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertThat;
-
 import java.math.BigDecimal;
 
 import org.junit.Before;
@@ -21,13 +18,11 @@ public class PortfolioTest {
         try {
             portfolio.setDeposit(new BigDecimal(-100));
         } catch (IllegalArgumentException e) {
-            assertThat(e.getMessage(), containsString("Deposit can not be nagative or zero"));
         }
 
         try {
             portfolio.setDeposit(new BigDecimal(0));
         } catch (IllegalArgumentException e) {
-            assertThat(e.getMessage(), containsString("Deposit can not be nagative or zero"));
         }
     }
 
@@ -36,13 +31,11 @@ public class PortfolioTest {
         try {
             portfolio.setTerm(-10);
         } catch (IllegalArgumentException e) {
-            assertThat(e.getMessage(), containsString("Term can not be nagative or zero"));
         }
 
         try {
             portfolio.setTerm(0);
         } catch (IllegalArgumentException e) {
-            assertThat(e.getMessage(), containsString("Term can not be nagative or zero"));
         }
     }
 
